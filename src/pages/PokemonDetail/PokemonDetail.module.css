@@ -1,0 +1,18 @@
+.pokemonDetailWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.pokemonDetailTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.pokemonDetailImage {
+  width: 200px;
+  height: 200px;
+}

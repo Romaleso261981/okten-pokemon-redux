@@ -1,0 +1,31 @@
+.pokemonSpritesWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pokemonSpritesTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.pokemonSpritesList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pokemonSpritesItem {
+  list-style: none;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.pokemonSpritesImage {
+  width: 100px;
+  height: 100px;
+}

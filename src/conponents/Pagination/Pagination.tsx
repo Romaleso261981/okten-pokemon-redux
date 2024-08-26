@@ -1,3 +1,4 @@
+import { Button, Center, Group } from "@mantine/core";
 import React from "react";
 
 interface PaginationProps {
@@ -9,8 +10,6 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({
-  currentPage,
-  totalPages,
   previous,
   next,
   onPageChange
@@ -28,21 +27,24 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <div className="pagination">
-      <button
-        onClick={() => handlePreviousPageChange(previous)}
-        disabled={previous === null}
-      >
-        Prev
-      </button>
-      <span>{currentPage}</span>
-      <button
-        onClick={() => handleNextPageChange(next)}
-        disabled={next === null}
-      >
-        Next
-      </button>
-    </div>
+    <Center>
+      <Group>
+        <Button
+          onClick={() => handlePreviousPageChange(previous)}
+          variant="default"
+          disabled={!previous}
+        >
+          Prev
+        </Button>
+        <Button
+          onClick={() => handleNextPageChange(next)}
+          variant="default"
+          disabled={!next}
+        >
+          Next
+        </Button>
+      </Group>
+    </Center>
   );
 };
 

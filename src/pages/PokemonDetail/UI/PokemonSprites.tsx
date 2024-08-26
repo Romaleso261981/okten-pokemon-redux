@@ -35,10 +35,6 @@ export const PokemonSprites: FC<PokemonSpritesProps> = ({ sprites }) => {
         {Object.entries(sprites).map(([key, url]) =>
           url ? (
             <li className={s.pokemonSpritesItem} key={key}>
-              <span className={s.pokemonSpritesName}>
-                {spriteLabels[key as SpriteKeys]}
-              </span>
-              <br />
               <img
                 className={s.pokemonSpritesImage}
                 src={url}

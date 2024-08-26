@@ -1,32 +1,31 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import s from "./PokemonDetail.module.css";
-
-export type SpriteKeys =
-  | "back_default"
-  | "back_female"
-  | "back_shiny"
-  | "back_shiny_female"
-  | "front_default"
-  | "front_female"
-  | "front_shiny"
-  | "front_shiny_female";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
+import { pokemonForms } from "../../../redux/pokemons/pokemonsSlice";
 
 type PokemonSpritesProps = {
-  sprites: Record<SpriteKeys, string | null>;
+  url: string;
 };
 
-export const PokemonSprites: FC<PokemonSpritesProps> = ({ sprites }) => {
-  const spriteLabels: Record<SpriteKeys, string> = {
-    back_default: "Back Default",
-    back_female: "Back Female",
-    back_shiny: "Back Shiny",
-    back_shiny_female: "Back Shiny Female",
-    front_default: "Front Default",
-    front_female: "Front Female",
-    front_shiny: "Front Shiny",
-    front_shiny_female: "Front Shiny Female"
-  };
+export const PokemonSprites: FC<PokemonSpritesProps> = ({ url }) => {
+  const dispatch = useAppDispatch();
+
+  const sprites = useAppSelector((state) => state.pokemons.sprites);
+
+  useEffect(() => {
+    try {
+      if (url) {
+        dispatch(pokemonForms(url));
+      }
+    } catch (error) {
+      console.error("Error fetching Pokemon detail:", error);
+    }
+  }, [dispatch, url]);
+
+  if (!sprites) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className={s.pokemonSpritesWrapper}>
@@ -38,7 +37,7 @@ export const PokemonSprites: FC<PokemonSpritesProps> = ({ sprites }) => {
               <img
                 className={s.pokemonSpritesImage}
                 src={url}
-                alt={spriteLabels[key as SpriteKeys]}
+                alt={"Pokemon sprite"}
                 style={{ width: "100px", height: "100px" }}
               />
             </li>
